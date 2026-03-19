@@ -1,0 +1,16 @@
+rss:
+  feeds:
+    - name: "Invest Like the Best"
+      url: "https://feeds.megaphone.fm/CLS2859450455"
+
+whisper:
+  model: medium
+  language: null
+
+proxy:
+  http: "http://127.0.0.1:7897"   # your local proxy, leave empty if not needed
+  https: "http://127.0.0.1:7897"
+
+output:
+  transcripts_dir: "./transcripts"
+  format: txt

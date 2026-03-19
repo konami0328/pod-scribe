@@ -1,0 +1,8 @@
+.env
+*.pyc
+__pycache__/
+
+transcripts/
+*.mp3
+*.m4a
+config.yaml
