@@ -1,6 +1,4 @@
 
-
-
 # pod-scribe
 
 Download and transcribe podcast episodes locally. No cloud ASR costs — just your CPU and time.
@@ -9,31 +7,20 @@ Built for generating transcripts that can be fed into your own LLM workflows (su
 
 ---
 
-## Features
-
-- Download podcast episodes from RSS feeds
-- Local transcription using Whisper
-- Plain text output, ready for LLM input
-- Fully local, no external APIs
-
----
-
 ## How it works
 
 ```
-
 RSS feed → download audio → local Whisper → transcript (.txt)
+```
 
-````
-
-Transcripts are saved as plain text files and can be used in any downstream workflow.
+Transcripts are saved as plain text files, ready to paste into any LLM chat interface.
 
 ---
 
 ## Requirements
 
 - Python 3.11+
-- [Whisper](https://github.com/openai/whisper) (model downloads on first run)
+- faster-whisper (model downloads on first run)
 - Proxy (only if required by your network)
 
 ---
@@ -45,7 +32,7 @@ conda create -n pod-scribe python=3.11
 conda activate pod-scribe
 pip install -r requirements.txt
 cp config.example.yaml config.yaml
-````
+```
 
 Edit `config.yaml` to configure RSS feeds and Whisper model settings.
 
@@ -74,7 +61,7 @@ python run.py --transcribe
 python run.py --transcribe "Howard Marks"
 ```
 
-### Download and transcribe
+### Download and transcribe together
 
 ```bash
 python run.py --download --transcribe --last 3
@@ -84,18 +71,19 @@ python run.py --download --transcribe --last 3
 
 ## Whisper model sizes
 
-| Model  | Size   | Speed (CPU)     | Quality |
-| ------ | ------ | --------------- | ------- |
-| small  | ~500MB | ~1–2× realtime  | good    |
-| medium | ~1.5GB | ~5–10× realtime | better  |
+| Model  | Size   | Speed (CPU)    | Quality |
+| ------ | ------ | -------------- | ------- |
+| small  | ~500MB | ~0.6-0.8× realtime | good   |
 
-`small` is recommended for CPU-only environments.
+`small` is recommended for CPU-only environments — fast enough for most clean audio.
 
-Models are cached at:
+Models are cached at `~/.cache/huggingface/hub/` after first download.
 
-```
-~/.cache/whisper/
-```
+> **First run note:** the model will be downloaded automatically. If you're in a restricted network region, set proxy environment variables before running:
+> ```bash
+> export https_proxy=http://127.0.0.1:7897
+> export http_proxy=http://127.0.0.1:7897
+> ```
 
 ---
 
@@ -112,7 +100,7 @@ whisper:
   language: null      # null = auto-detect, or "en" / "zh"
 
 proxy:
-  http: "http://127.0.0.1:7897"
+  http: "http://127.0.0.1:7897"   # leave empty if not needed
   https: "http://127.0.0.1:7897"
 
 output:
@@ -121,11 +109,25 @@ output:
 
 ---
 
+## Suggested analysis prompt
+
+Once you have a transcript, paste it into any LLM with the following prompt.
+
+```
+# EN
+[TBD]
+
+
+# ZH
+[TBD]
+
+
+```
+
+---
+
 ## Notes
 
-* Transcripts and audio files are saved to `transcripts/` (gitignored)
-* RSS publish dates may differ from podcast apps; use `--since` with a one-day buffer
-* This tool only handles downloading and transcription
-
-Downstream processing (summarization, QA, etc.) is intentionally left to the user.
-
+- Transcripts and audio files are saved to `transcripts/` (gitignored)
+- RSS publish dates may differ from podcast apps — use `--since` with a one-day buffer to be safe
+- This tool only handles downloading and transcription. Downstream processing is intentionally left to the user

@@ -4,7 +4,7 @@ rss:
       url: "https://feeds.megaphone.fm/CLS2859450455"
 
 whisper:
-  model: medium
+  model: small
   language: null
 
 proxy:
