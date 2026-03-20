@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pod-scribe"
+version = "0.1.0"
+description = "Download and transcribe podcasts locally using Whisper"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+dependencies = [
+    "faster-whisper",
+    "feedparser",
+    "pyyaml",
+    "requests",
+    "tqdm",
+]
+
+[project.scripts]
+pod-scribe = "run:main"
+
+[project.urls]
+Homepage = "https://github.com/konami0328/pod-scribe"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src", "run.py"]

@@ -187,7 +187,7 @@ def parse_args():
     return parser.parse_args()
 
 
-if __name__ == "__main__":
+def main():
     args = parse_args()
 
     if args.download is None and args.transcribe is None:
@@ -217,3 +217,7 @@ if __name__ == "__main__":
     if args.transcribe is not None:
         keyword = args.transcribe if args.transcribe else None
         run_transcribe(config, keyword=keyword)
+
+
+if __name__ == "__main__":
+    main()

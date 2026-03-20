@@ -2,6 +2,8 @@
 *.pyc
 *.pytest_cache
 __pycache__/
+dist/
+*.egg-info/
 
 transcripts/
 *.mp3
