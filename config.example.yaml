@@ -1,15 +1,17 @@
 rss:
   feeds:
-    - name: "Invest Like the Best"
-      url: "https://feeds.megaphone.fm/CLS2859450455"
+    - name: "独树不成林"
+      url: "https://feed.xyzfm.space/y9qnpfdrctnx"
+    - name: "声动早咖啡"
+      url: "https://feed.xyzfm.space/q88qwmydeuw8"
 
 whisper:
   model: small
   language: null
 
 proxy:
-  http: "http://127.0.0.1:7897"   # your local proxy, leave empty if not needed
-  https: "http://127.0.0.1:7897"
+  http: null   # your local proxy, leave empty if not needed
+  https: null
 
 output:
   transcripts_dir: "./transcripts"

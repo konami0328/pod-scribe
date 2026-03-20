@@ -1,5 +1,6 @@
 .env
 *.pyc
+*.pytest_cache
 __pycache__/
 
 transcripts/
